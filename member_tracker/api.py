@@ -24,12 +24,12 @@ class RefreshData(viewsets.GenericViewSet, mixins.CreateModelMixin):
         self.default_role = Role.objects.filter(role='member').first()
         self.get_trello_boards()
 
-    # find and add super member's  boards
-    def get_trello_boards(self):
 
+    def get_trello_boards(self):
         for board_id in self.super_member['idBoards']:
             board_object = self.save_boards(board_id)
             member_object_list = self.save_members(board_id)
+            
             self.board_member_roles(board_object, member_object_list)
             
 
@@ -64,6 +64,7 @@ class RefreshData(viewsets.GenericViewSet, mixins.CreateModelMixin):
                 members_list.append(existing_member)
         return members_list
 
+
     def save_boards(self, board_id):
         board_object = self.trello_manager_connection.boards.get(board_id)
         existing_board = Board.objects.filter(board_id=board_id).first()
@@ -74,7 +75,7 @@ class RefreshData(viewsets.GenericViewSet, mixins.CreateModelMixin):
             resave_board_name = Board(board_id=board_object['id'], board_name=board_object['name'])
             resave_board_name.save()
             return resave_board_name
-            
+
         else:
             return existing_board
 
