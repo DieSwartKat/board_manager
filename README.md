@@ -1,4 +1,4 @@
-# board_manager
+# Trello Board Manager
 Manage Your Trello Users from a single SUPER USER ACCOUNT that have access as admin to all the boards you want to manage.
 
 
