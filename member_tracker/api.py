@@ -67,11 +67,14 @@ class RefreshData(viewsets.GenericViewSet, mixins.CreateModelMixin):
     def save_boards(self, board_id):
         board_object = self.trello_manager_connection.boards.get(board_id)
         existing_board = Board.objects.filter(board_id=board_id).first()
+
         print(board_object['name'])
+
         if not existing_board:
             resave_board_name = Board(board_id=board_object['id'], board_name=board_object['name'])
             resave_board_name.save()
             return resave_board_name
+            
         else:
             return existing_board
 
