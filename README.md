@@ -1,6 +1,7 @@
 # board_manager
 Manage Your Trello Users from a single SUPER USER ACCOUNT that have access as admin to all the boards you want to manage.
 
+
 ## Technologies used
 
 * Python 3.7.4
@@ -16,6 +17,11 @@ pip install virtualenv
 ```
 
 ## How do I get set up? ##
+
+* You will need to setup your trello key, and token to start.
+* Once you have these, you place them in the .dev.env for development, or .prod.env for production
+* Also set your SUPERUSER in the same .env file
+
 
 * Create the repository on the remote (for example via Bitbucket)
 
@@ -46,6 +52,8 @@ pip install virtualenv
 * Next fill in the PROJECT_DIRECTORY/settings.py file if needed (Read the docstring and comments in the settings file)
 
 * Use furo\furo\generate_secret_key.py to generate a secret key, place that on the SECRET_KEY varaible your .dev.env file
+
+* When the django server is up and running you can point to url/update/update to scrap all the needed data from Trello.
 
 Django specific commands to get set up - DEVELOPMENT
 
