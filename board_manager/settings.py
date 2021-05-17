@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'member_tracker',
-    'trello',
-    'python-dotenv',
+    'rest_framework',
 
 ]
 
@@ -132,3 +131,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 from dotenv import load_dotenv
+import os 
+
+load_dotenv()
+BASE_FOLDER = (os.getcwd())
+
+DEBUG = True if os.getenv('DEBUG') and os.getenv('DEBUG').upper() == 'TRUE' else False
+
+dev_prod = 'dev' if DEBUG else 'prod'
+dev_prod_dotenv_path = os.path.join(BASE_FOLDER, f'.{dev_prod}.env')
+load_dotenv(dev_prod_dotenv_path)
+
+
+TRELLO_API_KEY = os.getenv('TRELLO_API_KEY')
+TRELLO_API_TOKEN = os.getenv('TRELLO_API_TOKEN')
+
+TRELLO_SUPER_USER = os.getenv('TRELLO_SUPER_USER')
